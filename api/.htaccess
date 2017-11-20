@@ -3,4 +3,4 @@ Options +FollowSymlinks
 RewriteEngine on
 
 # 重写规则
-RewriteRule ^(\bnew_[a-z_]+)/([a-z_,]*)/([a-z0-9_=']*)/$  index.php?tname=$1&fields=$2&con=$3 [nc,qsa]
+RewriteRule ^(\bnew_[a-z_]+)/([a-z_,]*)/([a-z0-9_='\s,\\(\\)]*)/$  index.php?tname=$1&fields=$2&con=$3 [nc,qsa]

@@ -28,7 +28,7 @@ if ($tablename == NULL || $field == NULL) {
     }
 
 
-    echo "<br>" . $result->num_rows . "条借款人信息";
+    echo "<br>" . $result->num_rows . "条信息";
     $conn->close();
 
     // echo "实体:" . $_GET["tname"] . " 字段:" . $_GET["fields"] . " 条件" . $_GET["con"];

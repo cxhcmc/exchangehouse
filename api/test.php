@@ -20,12 +20,19 @@ and open the template in the editor.
 
             };
         </script>
-        
+
     </head>
     <body>
         <div id="one"></div>
         <hr>
         <?php
+        require_once ($_SERVER['DOCUMENT_ROOT'] . "/core/SqlCondition.php");
+        require_once ($_SERVER['DOCUMENT_ROOT'] . "/version/v1.0/Site.php");
+
+        $site = new Site(new SQLCondition());
+        var_dump($site->getSource("new_customer", "name,crm_phonenumber", "1=1"));
+
+
         //$time = floor(microtime(true) * 1000);
         $time = time(); //通过Cliet 端传过来的时间戳来计算SHA1值 0a57e4cb7f7df3a427c613e4fe0352468db32b09.1511187893
         echo $time . "<br>";

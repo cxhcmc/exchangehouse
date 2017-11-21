@@ -12,9 +12,9 @@ class SimpleRest {
     public function setHttpHeaders($contentType, $statusCode) {
 
         $statusMessage = $this->getHttpStatusMessage($statusCode);
-
         header($this->httpVersion . " " . $statusCode . " " . $statusMessage);
         header("Content-Type:" . $contentType);
+        //echo $this->httpVersion . " " . $statusCode . " " . $statusMessage;
     }
 
     public function getHttpStatusMessage($statusCode) {

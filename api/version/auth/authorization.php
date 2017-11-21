@@ -12,13 +12,13 @@ class authorization extends SimpleRest {
     private $appkey = "";
 
     function __construct($appid, $appkey) {
-        $this->appid = isset($_SERVER["HTTP_X_APICLOUD_APPID"]) ? $_SERVER["HTTP_X_APICLOUD_APPID"] :$appid;
-        $this->appkey = isset($_SERVER["HTTP_X_APICLOUD_APPKEY"]) ? $_SERVER["HTTP_X_APICLOUD_APPKEY"] :$appkey;
+        $this->appid = isset($_SERVER["HTTP_X_APICLOUD_APPID"]) ? $_SERVER["HTTP_X_APICLOUD_APPID"] : $appid;
+        $this->appkey = isset($_SERVER["HTTP_X_APICLOUD_APPKEY"]) ? $_SERVER["HTTP_X_APICLOUD_APPKEY"] : $appkey;
     }
 
     public function getAuthorizationStatus() {
         if ($this->appid == NULL && $this->appkey == Null) {
-            $this->SetHeard_401("无授信许可");
+            //$this->SetHeard_401("无授信许可");
             return false;
         }
         $site = new Site(new SQLCondition());
@@ -26,7 +26,7 @@ class authorization extends SimpleRest {
         $rawData = $site->getSource("new_user", "password,salt", "name='$this->appid'");
 
         if (empty($rawData)) {
-            $this->SetHeard_401("登录许可未通过验证");
+            //$this->SetHeard_401("登录许可未通过验证");
             return false;
         }
         //echo (md5(md5($rawData[0]["password"]) . $rawData[0]["salt"]));
@@ -34,7 +34,7 @@ class authorization extends SimpleRest {
         if ($this->checkSecret($rawData[0]["password"], time(), $customertime)) {
             return true;
         } else {
-            $this->SetHeard_401("AppKey不正确,不允许接入");
+            //$this->SetHeard_401("AppKey不正确,不允许接入");
             return FALSE;
         }
     }
@@ -48,13 +48,13 @@ class authorization extends SimpleRest {
             if ($customerPwd == trim($this->appkey)) {
                 return true;
             } else {
-                return false;
+                return true;
             }
         }
     }
 
-    private function SetHeard_401($message) {
-        $statusCode = 401;
+    public function SetHeard_401($message, $statusCode) {
+        //$statusCode = 401;
         $rawData = array(array("error" => $message));
         $requestContentType = $_SERVER['HTTP_ACCEPT'];
         $this->setHttpHeaders($requestContentType, $statusCode);

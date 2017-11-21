@@ -20,16 +20,18 @@ and open the template in the editor.
 
             };
         </script>
-
+        
     </head>
     <body>
         <div id="one"></div>
         <hr>
         <?php
         //$time = floor(microtime(true) * 1000);
-        $time = time(); //通过Clint 端传过来的时间戳来计算SHA1值 0a57e4cb7f7df3a427c613e4fe0352468db32b09.1511187893
+        $time = time(); //通过Cliet 端传过来的时间戳来计算SHA1值 0a57e4cb7f7df3a427c613e4fe0352468db32b09.1511187893
         echo $time . "<br>";
         echo sha1("A6968565094002" . "UZ" . "62FB16B2-0ED6-B460-1F60-EB61954C823B" . "UZ" . $time) . "." . $time;
+        echo '<br>d134edd5316b1120f07f826caebce1dd<br>';
+        echo md5(md5(trim('Pa$$w0rd')) . '9f6a');
         ?>
     </body>
 </html>

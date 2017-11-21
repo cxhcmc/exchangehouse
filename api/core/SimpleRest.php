@@ -1,4 +1,5 @@
 <?php
+
 /*
  * 一个简单的 RESTful web services 基类
  * 我们可以基于这个类来扩展需求
@@ -92,6 +93,19 @@ class SimpleRest {
                 $xml->addChild($key, $value);
             }
             return $xml->asXML();
+        }
+    }
+
+    public function responeData($requestContentType, $rawData) {
+        if (strpos($requestContentType, 'application/json') !== false) {
+            $response = $this->encodeJson($rawData);
+            echo $response;
+        } else if (strpos($requestContentType, 'text/html') !== false) {
+            $response = $this->encodeHtml($rawData);
+            echo $response;
+        } else if (strpos($requestContentType, 'application/xml') !== false) {
+            $response = $this->encodeXml($rawData);
+            echo $response;
         }
     }
 

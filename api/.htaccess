@@ -3,4 +3,4 @@ Options +FollowSymlinks
 RewriteEngine on
 
 # 重写规则
-RewriteRule ^(\bnew_[a-z_]+)/([a-z_,]*)/([a-z0-9_='\s,\\(\\)]*)/$  index.php?tname=$1&fields=$2&con=$3 [nc,qsa]
+RewriteRule ^(v[0-9.]*)/(\bnew_[a-z_]+)/([a-z_,]*)/([a-z0-9_='\s,\\(\\)]*)/$  NetBeans.php?ver=$1&tname=$2&fields=$3&con=$4 [nc,qsa]

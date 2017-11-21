@@ -1,6 +1,6 @@
 <?php
 
-require_once("jdsource/SiteRestHandler.php");
+require_once("v1/SiteRestHandler.php");
 
 
 $hander = new SiteRestHandler();

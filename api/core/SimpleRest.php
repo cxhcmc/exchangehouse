@@ -1,5 +1,4 @@
 <?php
-
 /*
  * 一个简单的 RESTful web services 基类
  * 我们可以基于这个类来扩展需求
@@ -66,6 +65,34 @@ class SimpleRest {
     public function _get($str) {
         $val = !empty($_GET[$str]) ? $_GET[$str] : null;
         return $val;
+    }
+
+    public function encodeHtml($responseData) {
+
+        $htmlResponse = "<table border='1'>";
+        for ($i = 0; $i < count($responseData); $i++) {
+            foreach ($responseData[$i] as $key => $value) {
+                $htmlResponse .= "<tr><td>" . $key . "</td><td>" . $value . "</td></tr>";
+            }
+        }
+        $htmlResponse .= "</table>";
+        return $htmlResponse;
+    }
+
+    public function encodeJson($responseData) {
+        $jsonResponse = json_encode($responseData);
+        return $jsonResponse;
+    }
+
+    public function encodeXml($responseData) {
+        // 创建 SimpleXMLElement 对象
+        $xml = new SimpleXMLElement('<?xml version="1.0"?><site></site>');
+        for ($i = 0; $i < count($responseData); $i++) {
+            foreach ($responseData[$i] as $key => $value) {
+                $xml->addChild($key, $value);
+            }
+            return $xml->asXML();
+        }
     }
 
 }

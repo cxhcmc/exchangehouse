@@ -9,7 +9,6 @@ header("Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE");
 
 $auth = new authorization(null, null);
 $flag = $auth->getAuthorizationStatus();
-//$flag = TRUE;
 if ($flag == TRUE) {
     
 //    header('WWW-Authenticate: Basic realm="My Realm"');

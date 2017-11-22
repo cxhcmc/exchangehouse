@@ -48,7 +48,7 @@ class authorization extends SimpleRest {
             if ($customerPwd == trim($this->appkey)) {
                 return true;
             } else {
-                return true;
+                return FALSE;
             }
         }
     }

@@ -19,7 +19,7 @@ class SiteRestHandler extends SimpleRest {
 //            $statusCode = 204;
 //            $rawData = array('error' => 'No sites found!');
 //        } else {
-            $statusCode = 200;
+        $statusCode = 200;
 //        }
 
         $requestContentType = $_SERVER['HTTP_ACCEPT'];

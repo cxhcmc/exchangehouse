@@ -8,17 +8,21 @@ header('Access-Control-Allow-Headers: content-type,x-apicloud-appid,x-apicloud-a
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE");
 
 $auth = new authorization(null, null);
-//$flag = $auth->getAuthorizationStatus();
-$flag = TRUE;
-if ($flag==TRUE) {
-    $auth->SetHeard_401("登录成功,获取数据", 203);
-} else {
+$flag = $auth->getAuthorizationStatus();
+//$flag = TRUE;
+if ($flag == TRUE) {
+    
+//    header('WWW-Authenticate: Basic realm="My Realm"');
+//    header('HTTP/1.0 401 Unauthorized');
+//    header('status: 401 Unauthorized');
+//    echo 'Text to send if user hits Cancel button';
+    $hander = new SiteRestHandler();
+    $field = $hander->_get("fields");
+    $tablename = $hander->_get("tname");
+    $condition = $hander->_get("con");
 
-    $auth->SetHeard_401("登录失败", 200);
+    $hander->getSitesAPI($tablename, $field, $condition);
+} else {
+    $auth->SetHeard_401("登录失败", 203);
 }
-//$hander = new SiteRestHandler();
-//$field = $hander->_get("fields");
-//$tablename = $hander->_get("tname");
-//$condition = $hander->_get("con");
-//
-//$hander->getSitesAPI($tablename, $field, $condition);
+

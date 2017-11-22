@@ -15,12 +15,12 @@ class SiteRestHandler extends SimpleRest {
         $site = new Site(new SQLCondition());
         $rawData = $site->getSource($tablename, $field, $condition);
 
-        if (empty($rawData)) {
-            $statusCode = 404;
-            $rawData = array('error' => 'No sites found!');
-        } else {
+//        if (empty($rawData)) {
+//            $statusCode = 204;
+//            $rawData = array('error' => 'No sites found!');
+//        } else {
             $statusCode = 200;
-        }
+//        }
 
         $requestContentType = $_SERVER['HTTP_ACCEPT'];
         $this->setHttpHeaders($requestContentType, $statusCode);

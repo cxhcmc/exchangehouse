@@ -31,7 +31,7 @@ class Site {
                 return $result;
             }
         } catch (Exception $exc) {
-            die("执行SQL语句失败: " . $exc->getTraceAsString());
+            die("执行SQL语句失败: " . $exc->getMessage());
         } finally {
             $this->SQL->conn->close();
         }
@@ -59,7 +59,7 @@ class Site {
                 throw new Exception("缺少查询必要参数");
             }
         } catch (Exception $exc) {
-            die("运行中断,异常原因: " . $exc->getTraceAsString());
+            die("运行中断,异常原因: " . $exc->getMessage());
         }
     }
 
